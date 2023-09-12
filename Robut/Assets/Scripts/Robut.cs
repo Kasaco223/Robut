@@ -8,6 +8,7 @@ public class Robut : MonoBehaviour
     private Rigidbody rb;
     private Vector3 originalPosition;
     private bool isFetching = false;
+    public Transform target;
 
     void Start()
     {
@@ -22,6 +23,14 @@ public class Robut : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector3 targetDirection = target.position - transform.position;
+        targetDirection.y = 0; // Esto hace que el objeto solo gire en el eje Y
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        targetRotation *= Quaternion.Euler(0, 90, 0); // Añade una rotación adicional de 90 grados en el eje Y
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+
+
+
         float distanceToBall = Vector3.Distance(transform.position, ball.transform.position);
 
         if (!isFetching && distanceToBall > maxDistance)
@@ -53,7 +62,6 @@ public class Robut : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, originalPosition, speed * Time.fixedDeltaTime);
 
             }
-           
 
         }
     }
