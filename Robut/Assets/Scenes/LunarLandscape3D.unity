@@ -16374,7 +16374,12 @@ PrefabInstance:
       propertyPath: selectedBlocks.Array.size
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9209901716921584362, guid: d6281f2cd8eaadc4f953f7f6ca0ee8da, type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9209901716921584361, guid: d6281f2cd8eaadc4f953f7f6ca0ee8da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6281f2cd8eaadc4f953f7f6ca0ee8da, type: 3}
 --- !u!1 &1701349071
 GameObject:
