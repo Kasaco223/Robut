@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - BallTag
+  - BallMouthTag
+  - RobutTag
   layers:
   - Default
   - TransparentFX

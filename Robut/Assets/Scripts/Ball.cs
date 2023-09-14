@@ -6,6 +6,8 @@ public class Ball : MonoBehaviour
     public float upwardForce = 2f;
     private Rigidbody rb;
     private float lunarGravity = -1.62f; // Aproximadamente 1/6 de la gravedad terrestre
+    private float lanzamiento = 0f;
+    private float timeAtRest = 0f;
 
     void Start()
     {
@@ -14,6 +16,7 @@ public class Ball : MonoBehaviour
         {
             Debug.LogError("No se encontró un componente Rigidbody en este objeto. Por favor, añade uno.");
         }
+        InvokeRepeating("Repetir", 0, 5f);
     }
 
     void FixedUpdate()
@@ -22,23 +25,70 @@ public class Ball : MonoBehaviour
         rb.AddForce(0, lunarGravity * rb.mass, 0);
     }
 
+    void Repetir()
+    {
+        lanzamiento = 0f;
+    }
+
+    bool IsInCameraView()
+    {
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+        return viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0;
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        Renderer rend = GetComponent<Renderer>();
+        if (rb.velocity.magnitude < 1)
         {
-            rb.AddForce(transform.forward * force + transform.up * upwardForce, ForceMode.Impulse);
+            timeAtRest += Time.deltaTime;
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else
         {
-            rb.AddForce(-transform.right * force + transform.up * upwardForce, ForceMode.Impulse);
+            timeAtRest = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        if (lanzamiento == 1)
         {
-            rb.AddForce(transform.right * force + transform.up * upwardForce, ForceMode.Impulse);
+            rend.material.color = Color.white;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+
+        // Agrega una condición para verificar si el objeto con el tag "RobotTag" está a menos de 10 unidades de distancia
+        GameObject robut = GameObject.FindGameObjectWithTag("RobutTag");
+        if (robut != null && Vector3.Distance(transform.position, robut.transform.position) < 10f)
         {
-            rb.AddForce(-transform.forward * force + transform.up * upwardForce, ForceMode.Impulse);
+            if (timeAtRest > 2 && IsInCameraView() && lanzamiento < 1f)
+            {
+               
+                if (lanzamiento < 1f)
+                {
+                    rend.material.color = Color.blue;
+                }
+                else
+                {
+                    rend.material.color = Color.white;
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    rb.AddForce(transform.forward * force + transform.up * upwardForce, ForceMode.Impulse);
+                    lanzamiento += 1f;
+                }
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    rb.AddForce(-transform.right * force + transform.up * upwardForce, ForceMode.Impulse);
+                    lanzamiento += 1f;
+                }
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    rb.AddForce(transform.right * force + transform.up * upwardForce, ForceMode.Impulse);
+                    lanzamiento += 1f;
+                }
+                else if (Input.GetKeyDown(KeyCode.W))
+                {
+                    rb.AddForce(-transform.forward * force + transform.up * upwardForce, ForceMode.Impulse);
+                    lanzamiento += 1f;
+                    Debug.Log("W");
+                }
+            }
         }
     }
 }
