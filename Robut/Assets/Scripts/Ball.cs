@@ -9,9 +9,16 @@ public class Ball : MonoBehaviour
     private float lanzamiento = 0f;
     private float timeAtRest = 0f;
 
+    AudioSource audio1;
+
+    [SerializeField] AudioClip pelota;
+    [SerializeField] AudioClip ladrido;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audio1 = GetComponent<AudioSource>();
+
         if (rb == null)
         {
             Debug.LogError("No se encontró un componente Rigidbody en este objeto. Por favor, añade uno.");
@@ -71,24 +78,37 @@ public class Ball : MonoBehaviour
                 {
                     rb.AddForce(transform.forward * force + transform.up * upwardForce, ForceMode.Impulse);
                     lanzamiento += 1f;
+                    audio1.PlayOneShot(pelota);
+                    Invoke("ladrar", 0.5f);
                 }
                 else if (Input.GetKeyDown(KeyCode.D))
                 {
                     rb.AddForce(-transform.right * force + transform.up * upwardForce, ForceMode.Impulse);
                     lanzamiento += 1f;
+                    audio1.PlayOneShot(pelota);
+                    Invoke("ladrar", 0.5f);
                 }
                 else if (Input.GetKeyDown(KeyCode.A))
                 {
                     rb.AddForce(transform.right * force + transform.up * upwardForce, ForceMode.Impulse);
                     lanzamiento += 1f;
+                    audio1.PlayOneShot(pelota);
+                    Invoke("ladrar", 0.5f);
                 }
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
                     rb.AddForce(-transform.forward * force + transform.up * upwardForce, ForceMode.Impulse);
                     lanzamiento += 1f;
                     Debug.Log("W");
+                    audio1.PlayOneShot(pelota);
+                    Invoke("ladrar", 0.5f);
                 }
             }
         }
+    }
+
+    private void ladrar()
+    {
+        audio1.PlayOneShot(ladrido);
     }
 }

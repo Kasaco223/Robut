@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
+
     private Animator animator;
     private Rigidbody rb;
+
+
 
     void Start()
     {
@@ -19,7 +22,6 @@ public class Animation : MonoBehaviour
         {
             // Si el objeto se está moviendo, activa la animación "Salto"
             animator.SetBool("IsMoving", false);
-            
         }
         else
         {
