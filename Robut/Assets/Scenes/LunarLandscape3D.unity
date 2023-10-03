@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 297098016}
-  m_IndirectSpecularColor: {r: 0.00080954505, g: 0.004162026, b: 0.020064274, a: 1}
+  m_IndirectSpecularColor: {r: 0.0008095468, g: 0.004161891, b: 0.02006406, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedFlowchart: {fileID: 0}
 --- !u!4 &72144109
 Transform:
   m_ObjectHideFlags: 1
@@ -693,9 +694,10 @@ GameObject:
   m_Component:
   - component: {fileID: 123561331}
   - component: {fileID: 123561330}
-  - component: {fileID: 123561329}
   - component: {fileID: 123561332}
+  - component: {fileID: 123561329}
   - component: {fileID: 123561333}
+  - component: {fileID: 123561334}
   m_Layer: 1
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -781,7 +783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de278c05650786440b9b7cc11653c90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1713130127}
 --- !u!82 &123561333
 AudioSource:
   m_ObjectHideFlags: 0
@@ -792,7 +793,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2e5ad848199f6084da5db0afbbc7b361, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a20e1a0061dfa2b47b68a9f0f00fcc8d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.311
   m_Pitch: 1
@@ -878,6 +879,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &123561334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123561328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65be024c802dd3a47a016c0c636fc64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &127681004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,7 +2377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &339624732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2374,7 +2387,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 339624731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &339624733
@@ -5860,7 +5873,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f35383bc9e18b4381af109e7608ac5d9, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13744,6 +13756,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: 
+  nameColor: {r: 1, g: 1, b: 1, a: 1}
+  soundEffect: {fileID: 0}
+  portraits: []
+  portraitsFace: 0
+  setSayDialog: {fileID: 0}
+  description: 
 --- !u!4 &1309950975
 Transform:
   m_ObjectHideFlags: 0
@@ -16261,8 +16280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   upwardForce: 10
-  pelota: {fileID: 8300000, guid: 57f221f2cf55bbf41abb12a89f6cb6a2, type: 3}
-  ladrido: {fileID: 8300000, guid: 2df90be30ef9bbd43bdac034ac49fa3a, type: 3}
+  pelota: {fileID: 8300000, guid: 9eee93a86049d9c479ba65eb0653805e, type: 3}
+  ladrido: {fileID: 8300000, guid: 3d7d362e87d238741be283403812cc16, type: 3}
 --- !u!82 &1671020657
 AudioSource:
   m_ObjectHideFlags: 0

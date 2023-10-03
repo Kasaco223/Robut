@@ -9,7 +9,7 @@ public class Robut : MonoBehaviour
     private Vector3 originalPosition;
     private bool isFetching = false;
 
-    private GameObject mainCamera;
+    private GameObject mainCamera;  
     private GameObject taggedObjectMouth;
     private GameObject taggedObjectBall;
 
@@ -72,7 +72,7 @@ public class Robut : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (Time.time - startTime >= 15f)
+        if (Time.time - startTime >= 13f)
         {
             canFollow = true;
         }
